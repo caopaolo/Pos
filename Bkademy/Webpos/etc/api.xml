@@ -1,0 +1,6 @@
+<route url="/V1/webpos/products" method="GET">
+    <service class="Bkademy\Webpos\Api\Catalog\ProductRepositoryInterface" method="getList"/>
+    <resources>
+        <resource ref="Bkademy_Webpos::webpos" />
+    </resources>
+</route>

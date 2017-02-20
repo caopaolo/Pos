@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Bkademy_Webpos::main_menu"
+             title="Bkademy"
+             resource="Bkademy_Webpos::main_menu"
+             module="Bkademy_Webpos"
+             sortOrder="20"/>
+        <add id="Bkademy_Webpos::checkout"
+             title="Checkout"
+             module="Bkademy_Webpos"
+             sortOrder="10"
+             resource="Bkademy_Webpos::checkout"
+             parent="Bkademy_Webpos::webpos"
+             action="webpos/index/index"/>
+        <add id="Bkademy_Webpos::webpos"
+             title="WebPOS"
+             module="Bkademy_Webpos"
+             sortOrder="10"
+             parent="Bkademy_Webpos::main_menu"
+             dependsOnModule="Bkademy_Webpos"
+             resource="Bkademy_Webpos::webpos"/>
+        <add id="Bkademy_Webpos::staff"
+             title="Staff Management"
+             module="Bkademy_Webpos"
+             sortOrder="5"
+             parent="Bkademy_Webpos::webpos"
+             dependsOnModule="Bkademy_Webpos"
+             action="webpos/staff"
+             resource="Bkademy_Webpos::staff"/>
+        <add id="Bkademy_Webpos::settings"
+             title="Settings"
+             module="Bkademy_Webpos"
+             sortOrder="10"
+             parent="Bkademy_Webpos::webpos"
+             dependsOnModule="Bkademy_Webpos"
+             action="adminhtml/system_config/edit/section/bkademy_webpos"
+             resource="Bkademy_Webpos::settings"/>
+    </menu>
+</config>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Bkademy\Webpos\Model\ResourceModel\Staff\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">webpos_staff</argument>
+            <argument name="resourceModel" xsi:type="string">Bkademy\Webpos\Model\ResourceModel\Staff</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="webpos_staff_listing_data_source" xsi:type="string">Bkademy\Webpos\Model\ResourceModel\Staff\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Bkademy\Webpos\Model\WebposConfigProvider\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="webpos_default_config_provider" xsi:type="object">Bkademy\Webpos\Model\WebposConfigProvider\DefaultConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Magento\Webapi\Controller\Rest\RequestValidator" type="Bkademy\Webpos\Controller\Rest\RequestValidator"/>
+    <preference for="Magento\Webapi\Controller\Rest" type="Bkademy\Webpos\Controller\Rest"/>
+    <preference for="Bkademy\Webpos\Api\Staff\StaffRepositoryInterface"
+                type="Bkademy\Webpos\Model\Repository\Staff\StaffRepository"/>
+
+    <!-- product api -->
+    <preference for="Bkademy\Webpos\Api\Catalog\ProductRepositoryInterface"
+                type="Bkademy\Webpos\Model\Repository\Catalog\ProductRepository"/>
+    <preference for="Bkademy\Webpos\Api\Catalog\SwatchRepositoryInterface"
+                type="Bkademy\Webpos\Model\Repository\Catalog\SwatchRepository"/>
+    <preference for="Bkademy\Webpos\Api\Data\Catalog\SwatchResultInterface"
+                type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Bkademy\Webpos\Api\Catalog\ProductInterface" type="Bkademy\Webpos\Model\Repository\Catalog\Product"/>
+    <!-- end product api -->
+
+    <preference for="Bkademy\Webpos\Api\Checkout\CheckoutRepositoryInterface"
+                type="Bkademy\Webpos\Model\Repository\Checkout\CheckoutRepository"/>
+    <preference for="Bkademy\Webpos\Api\Data\Checkout\QuoteDataInterface"
+                type="Bkademy\Webpos\Model\Checkout\QuoteData"/>
+    <preference for="Bkademy\Webpos\Api\Data\Checkout\ItemBuyRequestInterface"
+                type="Bkademy\Webpos\Model\Checkout\ItemBuyRequest"/>
+    <preference for="Bkademy\Webpos\Api\Data\Checkout\ResponseInterface"
+                type="Bkademy\Webpos\Model\Checkout\Response"/>
+
+    <!-- order api -->
+    <preference for="Bkademy\Webpos\Api\Sales\OrderRepositoryInterface"
+                type="Bkademy\Webpos\Model\Sales\OrderRepository"/>
+    <preference for="Bkademy\Webpos\Api\Data\Sales\OrderSearchResultInterface"
+                type="Bkademy\Webpos\Model\ResourceModel\Sales\Order\Collection"/>
+    <preference for="Bkademy\Webpos\Api\Data\Sales\OrderInterface" type="Bkademy\Webpos\Model\Sales\Order"/>
+    <!-- end order api -->
+
+    <!-- shipment api -->
+    <preference for="Bkademy\Webpos\Api\Sales\ShipmentRepositoryInterface"
+                type="Bkademy\Webpos\Model\Sales\Order\ShipmentRepository"/>
+    <!-- end shipment api -->
+
+    <!-- invoice api -->
+    <preference for="Bkademy\Webpos\Api\Sales\InvoiceRepositoryInterface"
+                type="Bkademy\Webpos\Model\Sales\Order\InvoiceRepository"/>
+    <!-- end invoice api -->
+</config>
